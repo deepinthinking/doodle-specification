@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.deepinthinking.doodle</groupId>
+  <artifactId>doodle-specification</artifactId>
+  <version>${revision}</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <revision>2025.0.0-SNAPSHOT</revision>
+    <java.version>17</java.version>
+
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <resource.delimiter>@</resource.delimiter>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <spotless-maven-plugin.version>2.46.0</spotless-maven-plugin.version>
+    <spotless-maven-plugin.skip>true</spotless-maven-plugin.skip>
+    <google-java-format.version>1.28.0</google-java-format.version>
+    <flatten-maven-plugin.version>1.7.1</flatten-maven-plugin.version>
+  </properties>
+
+  <modules>
+    <module>doodle-specification-dependencies</module>
+  </modules>
+
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless-maven-plugin.version}</version>
+          <configuration>
+            <skip>${spotless-maven-plugin.skip}</skip>
+            <java>
+              <googleJavaFormat>
+                <version>${google-java-format.version}</version>
+                <style>GOOGLE</style>
+              </googleJavaFormat>
+              <licenseHeader>
+                <file>${maven.multiModuleProjectDirectory}/src/checkstyle/license-header.txt</file>
+              </licenseHeader>
+            </java>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>${flatten-maven-plugin.version}</version>
+          <inherited>true</inherited>
+          <configuration>
+            <embedBuildProfileDependencies>false</embedBuildProfileDependencies>
+            <flattenDependencyMode>all</flattenDependencyMode>
+            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+            <updatePomFile>true</updatePomFile>
+            <pomElements>
+              <parent>expand</parent>
+              <properties>keep</properties>
+              <dependencyManagement>interpolate</dependencyManagement>
+              <dependencies>resolve</dependencies>
+              <distributionManagement>remove</distributionManagement>
+              <repositories>remove</repositories>
+            </pomElements>
+          </configuration>
+          <executions>
+            <execution>
+              <id>flatten</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>flatten</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+
+</project>

@@ -1,0 +1,10 @@
+# MacOSX
+.DS_Store
+
+# Apache Maven
+target/
+.flattened-pom.xml
+
+# Jetbrains IDE
+.idea/
+*.iml
