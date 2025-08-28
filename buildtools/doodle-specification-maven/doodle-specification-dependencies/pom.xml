@@ -9,9 +9,9 @@
 
   <parent>
     <groupId>org.deepinthinking.doodle</groupId>
-    <artifactId>doodle-specification</artifactId>
+    <artifactId>doodle-specification-build</artifactId>
     <version>${revision}</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../doodle-specification-build/pom.xml</relativePath>
   </parent>
 
 </project>
