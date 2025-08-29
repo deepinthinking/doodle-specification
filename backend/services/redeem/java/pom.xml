@@ -4,26 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>doodle-specification-dependencies</artifactId>
+  <artifactId>doodle-specification-redeem</artifactId>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>org.deepinthinking.doodle</groupId>
     <artifactId>doodle-specification-build</artifactId>
     <version>${revision}</version>
-    <relativePath>../doodle-specification-build/pom.xml</relativePath>
+    <relativePath>../../../../buildtools/doodle-specification-maven/doodle-specification-build/pom.xml</relativePath>
   </parent>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.deepinthinking.doodle</groupId>
-        <artifactId>doodle-specification-services-dependencies</artifactId>
-        <version>${revision}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
 </project>
